@@ -1,6 +1,6 @@
 <?php 
 require_once '../include.php';
-
+    checkAdminLogined();
 $rows=getAllAdmin($tp);
 if(!$rows){
 	alertMes("sorry,没有管理员,请添加!","addAdmin.php");

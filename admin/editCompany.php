@@ -1,5 +1,6 @@
 <?php 
 require_once '../include.php';
+    checkAdminLogined();
 $id=$_REQUEST['id'];
 $sql="select * from zp_company where id='{$id}'";
 $row=fetchOne($sql,$tp);

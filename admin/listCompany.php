@@ -1,5 +1,6 @@
 <?php 
 require_once '../include.php';
+    checkAdminLogined();
 //获取企业信息
 $sql="select * from zp_company";
 $rows=fetchAll($sql,$tp);

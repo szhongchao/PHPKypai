@@ -1,5 +1,6 @@
 <?php 
 require_once '../include.php';
+    checkAdminLogined();
 //获取求职者信息
 $sql="select * from zp_jobs";
 $rows=fetchAll($sql,$tp);

@@ -7,7 +7,7 @@
 		$arr=$_POST;
 		$sql="select password from zp_personal where id='{$id}'";
 		$row=fetchOne($sql,$tp);
-		if($row['password']==$arr['pw_old']){
+		if($row['password']==md5($arr['pw_old'])){
 				//修改密码的操作 
 			$sqlpwd="update zp_personal set password={$arr['pw_now']} where id='{$id}'";
 			$result=mysqli_query($tp,$sqlpwd);

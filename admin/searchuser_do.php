@@ -28,6 +28,7 @@ function doit(p){
 
 <?php 
 require_once '../include.php';
+checkAdminLogined();
 $uid=trim($_POST['uid']);
 $qqnum=trim($_POST['qqnum']);
 $fileidstr=trim($_POST['fileidstr']);

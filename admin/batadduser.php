@@ -1,4 +1,8 @@
-<!--#include file="conn.asp" --><html>
+<?php 
+require_once '../include.php';
+checkAdminLogined();
+?>
+<html>
 <head>
 <title>新增用户</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

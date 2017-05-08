@@ -2,7 +2,7 @@
 	//注册
 	function reg($conn,$type){
 		// $arr=$_POST;
-		$arr['password']=$_POST['password'];
+		$arr['password']=md5($_POST['password']);
 		$arr['username']=$_POST['username'];
 		$arr['name']=$_POST['name'];
 		// $arr['regtime']=time();
@@ -42,7 +42,7 @@
 	// 登录
 	function login($conn){
 		$name=$_POST['username'];
-		$pw=$_POST['password'];
+		$pw=md5($_POST['password']);
 		$identify=$_POST['identify'];
 		$verify=$_POST['verify'];
 		//采用COOKIE来保存验证码信息
@@ -80,13 +80,13 @@
 					header('Location:./index.php');
 				}
 				else{
-					alertMes("用户名或者密码错误","../zp/login.php");
+					alertMes("用户名或者密码错误","../login.php");
 				}
 
 			}
 		}
 		else{
-			alertMes("验证码错误","../zp/login.php");
+			alertMes("验证码错误","../login.php");
 		}
 	}
 		/**

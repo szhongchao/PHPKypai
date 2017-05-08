@@ -3,7 +3,7 @@
 	//管理员登录
 	function adminLogin($conn){
 		$name=$_POST['username'];
-		$pw=$_POST['password'];
+		$pw=md5($_POST['password']);
 		$verify=$_POST['verify'];
 		//采用COOKIE来保存验证码信息
 		//采用SESSION保存验证码信息失败
@@ -18,18 +18,18 @@
 					$_SESSION['adminNickName']=$row['nickname'];
 					$_SESSION['adminId']=$row['id'];
 					if($sverify == "000000"){
-						$code = '1';
-						$data='{code:' .$code. ', username:' .$name. ',password:' .$pw.'}';//组合成json格式数据
-						echo json_encode($data);//输出json数据
+						$array= ['code' => '1',
+								 'type' =>'0'];
+						echo json_encode($array);//输出json数据
 					}else {
 						header("location:index.php");
 					}
 					
 				}else{
 					if($sverify == "000000"){
-						$code = '0';
-						$data='{code:' .$code. ', username:' .$name. ',password:' .$pw.'}';//组合成json格式数据
-						echo json_encode($data);//输出json数据
+						$array= ['code' => '0',
+								'type' =>'0'];
+						echo json_encode($array);//输出json数据
 					}else {
 						alertMes("用户名或者密码错误","login.php");
 					}
@@ -65,7 +65,8 @@
 	 */
 	function addAdmin($tp){
 		$arr=$_POST;
-		$arr['password']=$_POST['password'];
+		$arr['password']=md5($_POST['password']);
+		
 		if(insert("zp_admin",$arr,$tp)){
 			$mes="添加成功!<br/><a href='addAdmin.php'>继续添加</a>|<a href='listAdmin.php'>查看管理员列表</a>";
 		}else{
@@ -93,7 +94,7 @@
 	 */
 	function editAdmin($id,$tp){
 		$arr=$_POST;
-		$arr['password']=$_POST['password'];
+		$arr['password']=md5($_POST['password']);
 		if(update("zp_admin", $arr,$tp,"id={$id}")){
 			$mes="编辑成功!<br/><a href='listAdmin.php'>查看管理员列表</a>";
 		}else{
